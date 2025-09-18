@@ -7,7 +7,7 @@ include_once "libs/load.php";
 <html lang="en">
 <?php 
 
-load("_head") 
+load("__head") 
 ?>
   <body>
     
