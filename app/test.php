@@ -1,19 +1,28 @@
+<?php
+include_once "libs/load.php";
 
-
-<?php 
-$servername = "192.168.29.229";
-$username = "user";
-$password = "password";
-$dbname = "db";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
+if(Session::isset('is_loggedin')){
+    $userdata=Session::get('session_user');
+    print('welcome back'.$userdata['username']);
+    $result=$userdata;
 }
+
 else{
-    print("connected successfull");
+    print("NO session founct.. trying to login now");
+    $result=User::logIn('musthafa','123456789');
+    if($result){
+        print('Login success'.$result['username']);
+        Session::set('is_loggedin',true);
+        Session::set('session_user',$result);
+
+    }
+
+
 }
+
+
+
+
+
 
 ?>
-

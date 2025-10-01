@@ -1,18 +1,28 @@
 <?php 
+$signup=false;
+$return=false;
+
  if(isset($_POST['username']) and isset($_POST['password']) and isset($_POST['email_address']) and isset($_POST['phonenumber'])){
  $user=$_POST['username'];
  $pass=$_POST['password'];
  $email=$_POST['email_address'];
  $phoneno=$_POST['phonenumber'];
+ $signup=true;
 
-$return=signup($user,$pass,$email,$phoneno);
-if($return){
-    print("stored successfully");
+$return=User::signup($user,$pass,$email,$phoneno);
+
+
+ }
+if ($signup){
+    if($return){
+    ?>
+    <div><h1>signup successfull
+    </h1></div>
+    <?php
+    }
 }
 else{
-    print("Database error");
-}
- }
+
 ?>
         
 <main class="form-signin w-100 m-auto">
@@ -35,7 +45,8 @@ else{
              <input class="form-check-input" type="checkbox" value="remember-me" id="checkDefault"> <label class="form-check-label" for="checkDefault">
                 Remember me
             </label> </div> <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
-        <p class="mt-5 mb-3 text-body-secondary">© 2017–2025</p>
+        <p class="mt-5 mb-3 text-body-secondary">2025</p>
     </form>
 </main>
 
+<?php }?>

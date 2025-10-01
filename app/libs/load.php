@@ -1,5 +1,10 @@
 <?php
 
+include_once "includes/Database.class.php";
+include_once "includes/User.class.php";
+include_once "includes/Session.class.php";
+Session::start();
+
 function load($name){
     include_once $_SERVER["DOCUMENT_ROOT"]."/app/__template/$name.php";
 }
@@ -12,7 +17,7 @@ function validate($username,$password){
 
 function signup($user,$pass,$email,$phoneno){
 
-$servername = "192.168.29.229";
+$servername = "10.164.83.46";
 $username = "user";
 $password = "password";
 $dbname = "db";

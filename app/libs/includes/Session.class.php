@@ -1,33 +1,34 @@
 <?php
 
-class Session{
+class Session
+{
 
-    public static function start(){
+    public static function start()
+    {
         session_start();
-
     }
-    public static function unset(){
+    public static function unset()
+    {
         session_unset();
-
     }
-    public static function destroy(){
-
+    public static function destroy()
+    {
         session_destroy();
     }
-    public static function set($key,$value){
-        $_SESSION[$key]=$value;
+    public static function set($key, $value)
+    {
+        $_SESSION[$key] = $value;
     }
-    public static function isset($key){
+    public static function isset($key)
+    {
         return isset($_SESSION[$key]);
-
     }
-    public static function get($key,$default=false){
-        if(isset($_SESSION[$key])){
+    public static function get($key, $default = false)
+    {
+        if (isset($_SESSION[$key])) {
             return $_SESSION[$key];
-        }
-        else {
+        } else {
             return $default;
-
         }
     }
 }
