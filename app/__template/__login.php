@@ -1,5 +1,18 @@
 <?php
 include_once $_SERVER["DOCUMENT_ROOT"]."/app/libs/load.php";
+
+// if(Session::isset('is_loggedin')){
+//  print("Welcome back".Session::get('session_user'));
+
+
+
+// }
+// else{
+//     print("Trying to login now");
+//     Database::getConnection();
+
+// }
+
 $username=$_POST['email_address'];
 $password=$_POST['password'];
 

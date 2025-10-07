@@ -8,7 +8,7 @@ class Database
     public static function getConnection()
     {
         if (Database::$connection == null) {
-            $servername = "10.152.118.46";
+            $servername = "192.168.29.172";
             $username = "user";
             $password = "password";
             $dbname = "db";
