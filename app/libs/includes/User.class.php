@@ -2,6 +2,18 @@
 class User
 {
 
+    public function __call($name, $arguments)
+    {
+        if(substr($name,0,3)=="get"){
+
+        }
+        elseif(substr($name,0,3)=="set"){
+            
+        }
+            
+        
+    }
+
     public static function signup($user, $pass, $email, $phoneno)
     {
         $conn = Database::getConnection();
