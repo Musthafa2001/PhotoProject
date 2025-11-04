@@ -1,18 +1,59 @@
 <?php
+
 class User
 {
-
+    public $conn=NULL;
+    public $id=NULL;
     public function __call($name, $arguments)
     {
         if(substr($name,0,3)=="get"){
+            
+        
 
         }
         elseif(substr($name,0,3)=="set"){
-            
+            print("set added");
+
         }
             
         
     }
+
+    public function __constructor($username)
+    {
+        $this->conn=Database::getConnection();
+        $this->$username=$username;
+        $sql="SELECT * FROM `auth` WHERE `username` = 'musthafa' LIMIT 50";
+        $result = $this->conn->query($sql);
+        if ($result->num_rows ){
+            $row=$result->fetch_assoc();
+            $this->id=$row['id'];
+
+        }
+        else{
+            throw new Exception("Username doesn't exist");
+        }
+
+    }
+    public function __get($var){ 
+        if(!$this->conn){
+            $sql="SELECT `$var` FROM `users` WHERE `id` = '$this->id' LIMIT 50";
+              $result = $this->conn->query($sql);
+        }
+          if ($result->num_rows ){
+            $row=$result->fetch_assoc()["var"];
+           
+
+        }
+        else{
+           return null;
+        }
+
+    }
+    public function __sets(){
+
+    }
+
 
     public static function signup($user, $pass, $email, $phoneno)
     {
@@ -56,4 +97,16 @@ VALUES ('$user', '$pass', '$email', '$phoneno', '0', '0');";
 }
 
     }
+
+
+    public function __construct($username)
+    {
+
+        $this->conn=Database::getConnection();
+    }
+
+
+
+
+
 }
