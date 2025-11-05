@@ -5,11 +5,13 @@ class Database
 
 
     public static $connection = null;
+ 
     public static function getConnection()
     {
+    
         
         if (Database::$connection == null) {
-            $servername = "192.168.29.172";
+            $servername = "192.168.29.229";
             $username = "user";
             $password = "password";
             $dbname = "db";

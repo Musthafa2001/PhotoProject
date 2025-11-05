@@ -6,21 +6,24 @@ class User
     public $id=NULL;
     public function __call($name, $arguments)
     {
+        $property=substr($name,0,3);
         if(substr($name,0,3)=="get"){
             
+            return $this->__gets($property);
         
 
         }
         elseif(substr($name,0,3)=="set"){
-            print("set added");
+            return $this->__sets($property);
 
         }
             
         
     }
 
-    public function __constructor($username)
+    public function __construct($username)
     {
+     
         $this->conn=Database::getConnection();
         $this->$username=$username;
         $sql="SELECT * FROM `auth` WHERE `username` = 'musthafa' LIMIT 50";
@@ -35,13 +38,13 @@ class User
         }
 
     }
-    public function __get($var){ 
+    public function __gets($var){ 
         if(!$this->conn){
             $sql="SELECT `$var` FROM `users` WHERE `id` = '$this->id' LIMIT 50";
               $result = $this->conn->query($sql);
         }
-          if ($result->num_rows ){
-            $row=$result->fetch_assoc()["var"];
+          if ($result->num_rows==1 ){
+            $row=$result->fetch_assoc()["$var"];
            
 
         }
@@ -58,7 +61,7 @@ class User
     public static function signup($user, $pass, $email, $phoneno)
     {
         $conn = Database::getConnection();
-        $pass=md5($pass);
+        // $pass=md5($pass);
         $sql = "INSERT INTO `auth` (`username`, `password`, `email`, `phone`, `blocked`, `active`)
 VALUES ('$user', '$pass', '$email', '$phoneno', '0', '0');";
 
@@ -78,17 +81,17 @@ VALUES ('$user', '$pass', '$email', '$phoneno', '0', '0');";
     public static function logIn($username,$password){
         $conn=Database::getConnection();
         $sql = "SELECT * FROM `auth` WHERE `username` ='$username'";
-        
+    
       $result = $conn->query($sql);
-
-      if ($result->num_rows ==1) {
-  // output data of each row
+    
+      if ($result->num_rows==1) {
     $row = $result->fetch_assoc();
     if($row['password']==$password){
-       return $row;
+       return $row['username'];
     }
     else{
         return false;
+        print("pass not matching");
     }
    
   }
@@ -99,11 +102,7 @@ VALUES ('$user', '$pass', '$email', '$phoneno', '0', '0');";
     }
 
 
-    public function __construct($username)
-    {
-
-        $this->conn=Database::getConnection();
-    }
+ 
 
 
 
