@@ -17,6 +17,9 @@ class User
             return $this->__sets($property);
 
         }
+        else{
+            throw new Exception("user::call -> $name");
+        }
             
         
     }
@@ -26,11 +29,12 @@ class User
      
         $this->conn=Database::getConnection();
         $this->$username=$username;
-        $sql="SELECT * FROM `auth` WHERE `username` = 'musthafa' LIMIT 50";
+        $sql="SELECT * FROM `auth` WHERE `username` = 'musthafa' OR `id`=$username LIMIT 50";
         $result = $this->conn->query($sql);
         if ($result->num_rows ){
             $row=$result->fetch_assoc();
             $this->id=$row['id'];
+
 
         }
         else{
