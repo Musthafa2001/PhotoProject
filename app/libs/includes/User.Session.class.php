@@ -1,5 +1,7 @@
 <?php
 
+use function PHPSTORM_META\type;
+
 class UserSession
 {
 
@@ -12,9 +14,11 @@ class UserSession
             $agent=$_SERVER['HTTP_USER_AGENT'];
             $token=md5(rand(0,99999).$ip.$agent.time());
             $sql="INSERT INTO `usersession` (`uid`, `token`, `logintime`, `ip`, `useragent`, `active`)
-VALUES ('$user->uid', '$token', now(), '$ip', '$agent', '1')";
-s
-            
+VALUES ('$user->id', '$token', now(), '$ip', '$agent', '1')";
+            if($conn->query($sql)){
+                Session::set('session_token',$token);
+                return $token;
+            }
         }
         else{
             return false;
@@ -23,24 +27,45 @@ s
 
     }
 
-public function __construct($id)
+public static function authorized($token){
+    
+   $session_user=new UserSession($token);
+
+}
+
+
+
+public function __construct($token)
 {
-        $this->conn=Database::getConnection();
-        $this->$id=$id;
-        $sql="SELECT * FROM `usersession` WHERE `id` = '$id' LIMIT 1";
-        $result = $this->conn->query($sql);
-        if ($result->num_rows){
+        $conn=null;
+        $uid=null;
+        $this->$conn=Database::getConnection();
+        $this->$token=$token;
+        // print($token);
+        $sql="SELECT * FROM `usersession` WHERE `token` ='$token'";
+        //  print($sql);
+    
+        $result = $this->$conn->query($sql);
+        // print_r($result);
+      
+        if ($result->num_rows==1){
+            // print("hello");
             $row=$result->fetch_assoc();
-            $this->id=$row['uid'];
+            // print_r($row);
+            $this->$uid=$row['uid'];
+            print($this->$uid);
+           
+            return $this->$uid;
         }
         else{
             throw new Exception("session is invalid");
         }
 }
 
-public function getuser(){
-    return new User($this->uid);
-}
+
+
+
+
 
 }
 

@@ -11,7 +11,7 @@ class Database
     
         
         if (Database::$connection == null) {
-            $servername = "192.168.29.229";
+            $servername = "192.168.29.173";
             $username = "user";
             $password = "password";
             $dbname = "db";
@@ -23,6 +23,7 @@ class Database
                 die("Connection failed: " . $conn->connect_error);
             } else {
                 Database::$connection = $conn;
+                
                 return Database::$connection;
             }
         } else {
