@@ -5,7 +5,6 @@ class Database
 
 
     public static $connection = null;
- 
     public static function getConnection()
     {
     

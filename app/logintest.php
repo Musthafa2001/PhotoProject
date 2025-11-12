@@ -14,10 +14,17 @@ $pass="123456789";
 // $a=user::logIn($username,$pass);
 // print($a);
 
-if(session::isset('session_token')){
+if(!Session::isset('session_token')){
     print(session::get('session_token'));
-    $uid=UserSession::authorized(Session::get('session_token'));
-    print($uid);
+    $token_create=UserSession::authentication($username,$pass);
+    print($token_create);
+   
+
+}
+else{
+ print(session::get('session_token'));
+ $uid=UserSession::authorized(session::get('session_token'));
+
 
 }
 
