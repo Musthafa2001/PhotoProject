@@ -4,7 +4,9 @@ use function PHPSTORM_META\type;
 
 class UserSession
 {
-
+    public $conn=null;
+    public $uid=null;
+    
     public static function authentication($user, $pass)
     {
         $username = User::logIn($user, $pass);
@@ -37,26 +39,24 @@ VALUES ('$user->id', '$token', now(), '$ip', '$agent', '1')";
 
     public function __construct($token)
     {
-         $conn = null;
-        $uid = null;
-        // $token=null;
-        $this->$conn = Database::getConnection();
+        $this->conn = Database::getConnection();
         $token = $token;
         // print($this->$token);
         // print($token);
         $sql = "SELECT * FROM `usersession` WHERE `token` ='$token'";
         //  print($sql);
-        $result = $this->$conn->query($sql);
+        $result = $this->conn->query($sql);
         // print_r($result);
+        print_r($result);
 
         if ($result->num_rows == 1) {
             // print("hello");
             $row = $result->fetch_assoc();
             // print_r($row);
-            $this->$uid = $row['uid'];
-            print($this->$uid);
+            $this->uid = $row['uid'];
+            print($this->uid);
 
-            return $this->$uid;
+            return $this->uid;
         } else {
             throw new Exception("session is invalid");
         }
