@@ -16,8 +16,13 @@ $return=User::signup($user,$pass,$email,$phoneno);
 if ($signup){
     if($return){
     ?>
-    <div><h1>signup successfull
-    </h1></div>
+<div class="card m-5" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title"> Signup successfull</h5>
+    <p class="card-text">Do yo want you login </p>
+    <a href="#" class="btn btn-primary">Go and enjoy</a>
+  </div>
+</div>
     <?php
     }
 }
@@ -44,7 +49,7 @@ else{
         <div class="form-check text-start my-3">
              <input class="form-check-input" type="checkbox" value="remember-me" id="checkDefault"> <label class="form-check-label" for="checkDefault">
                 Remember me
-            </label> </div> <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
+            </label> </div> <button class="btn btn-primary w-100 py-2" type="submit">Sign up</button>
         <p class="mt-5 mb-3 text-body-secondary">2025</p>
     </form>
 </main>

@@ -4,7 +4,12 @@ include_once "includes/Database.class.php";
 include_once "includes/User.class.php";
 include_once "includes/Session.class.php";
 include_once "includes/User.Session.class.php";
-Session::start();
+include_once "includes/WebAPI.class.php";
+
+$webapi=new WebAPI();
+$webapi->initiatesession();
+
+
 
 function load($name){
     include_once $_SERVER["DOCUMENT_ROOT"]."/app/__template/$name.php";

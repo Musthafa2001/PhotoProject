@@ -1,5 +1,7 @@
 <?php
-include_once "libs/load.php";
+file_put_contents("cron.txt",time()."\n",FILE_APPEND);
+
+?>
 
 
 

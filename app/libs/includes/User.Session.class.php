@@ -31,8 +31,8 @@ VALUES ('$user->id', '$token', now(), '$ip', '$agent', '1')";
     {
 
         $session_user = new UserSession($token);
-        $getip = $session_user->getipaddress($token);
-        print($getip);
+        // $getip = $session_user->getipaddress($token);
+        // print($getip);
     }
 
 
