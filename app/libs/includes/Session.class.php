@@ -38,7 +38,13 @@ class Session
     }
 
      public static function loadtemplate($name){
-        include $_SERVER["DOCUMENT_ROOT"]."/app/__template/$name.php";
+        $script= $_SERVER["DOCUMENT_ROOT"]."/app/__template/$name.php";
+        if(is_file($script)){
+            include $script;
+        }
+        else{
+            print("The page is not available");
+        }
     }
 
 
@@ -51,7 +57,7 @@ class Session
         return basename($_SERVER['PHP_SELF'],".php");
         
     }
-    
+
     public static function authentication(){
         return true;
     }

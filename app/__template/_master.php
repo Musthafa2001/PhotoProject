@@ -42,6 +42,7 @@
 
 <?php
 
+
 Session::loadtemplate(Session::currentscript()); 
 
 ?>
