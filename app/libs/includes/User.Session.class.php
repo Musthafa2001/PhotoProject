@@ -70,7 +70,7 @@ VALUES ('$user->id', '$token', now(), '$ip', '$agent', '1')";
     //    print($this->conn);
         // print($this->$token);
         $conn= Database::getConnection();
-        if ($conn && $this->$uid) {
+        if ($conn && $this->uid) {
             // print("hello");
             // print("\n$token");
             $sql ="SELECT * FROM `usersession` WHERE `token` = '$token'";
@@ -79,11 +79,12 @@ VALUES ('$user->id', '$token', now(), '$ip', '$agent', '1')";
             if ($result->num_rows == 1) {
                 // print("yes");
                 $row = $result->fetch_assoc();
-                $this->$ipdress = $row['ip'];
-                return $this->$ipdress;
+                $ipdress = $row['ip'];
+                return $ipdress;
             } else {
 
             }
         }
     }
+
 }
