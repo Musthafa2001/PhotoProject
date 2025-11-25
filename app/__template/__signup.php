@@ -7,6 +7,7 @@ $return=false;
  $pass=$_POST['password'];
  $email=$_POST['email_address'];
  $phoneno=$_POST['phonenumber'];
+
  $signup=true;
 
 $return=User::signup($user,$pass,$email,$phoneno);

@@ -2,6 +2,7 @@
 
 class Session
 {
+    public static $user=null;
 
     public static function start()
     {
@@ -60,6 +61,10 @@ class Session
 
     public static function authentication(){
         return true;
+    }
+    public static function getuser(){
+        return session::$user;
+
     }
 
 }

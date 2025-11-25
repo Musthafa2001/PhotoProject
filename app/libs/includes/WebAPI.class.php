@@ -5,16 +5,9 @@ class WebAPI{
     }
     public function initiatesession(){
         Session::start();
-        // print(php_sapi_name());
-        if(php_sapi_name()=="cli"){
-            print("hello");
-
+        if(session::isset('session_token')){
+            
         }
-        elseif(php_sapi_name()=="apache2handler"){
-            // print("cool");
-
-        }
-
     }
 }
 ?>

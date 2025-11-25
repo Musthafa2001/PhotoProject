@@ -1,11 +1,10 @@
 <?php
 
-use function PHPSTORM_META\type;
-
 class UserSession
 {
     public $conn=null;
     public $uid=null;
+    public $userobj=null;
     
     public static function authentication($user, $pass)
     {
@@ -31,8 +30,9 @@ VALUES ('$user->id', '$token', now(), '$ip', '$agent', '1')";
     {
 
         $session_user = new UserSession($token);
-        // $getip = $session_user->getipaddress($token);
-        // print($getip);
+        $userobj=$session_user->getuser();
+        return $session_user;
+
     }
 
 
@@ -47,21 +47,24 @@ VALUES ('$user->id', '$token', now(), '$ip', '$agent', '1')";
         //  print($sql);
         $result = $this->conn->query($sql);
         // print_r($result);
-        print_r($result);
+        // print_r($result);
 
         if ($result->num_rows == 1) {
             // print("hello");
             $row = $result->fetch_assoc();
             // print_r($row);
             $this->uid = $row['uid'];
-            print($this->uid);
+            // print($this->uid);
 
             return $this->uid;
         } else {
             throw new Exception("session is invalid");
         }
     }
-
+    
+    public function getuser(){
+        return new User($this->uid);
+    }
 
     public function getipaddress($token)
     {
