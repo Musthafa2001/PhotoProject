@@ -2,10 +2,10 @@
 
 class UserSession
 {
-    public $conn=null;
-    public $uid=null;
-    public $userobj=null;
-    
+    public $conn = null;
+    public $uid = null;
+    public $userobj = null;
+
     public static function authentication($user, $pass)
     {
         $username = User::logIn($user, $pass);
@@ -30,9 +30,9 @@ VALUES ('$user->id', '$token', now(), '$ip', '$agent', '1')";
     {
 
         $session_user = new UserSession($token);
-        $userobj=$session_user->getuser();
-        return $session_user;
-
+        
+        return $session_user->getuser();
+   
     }
 
 
@@ -61,8 +61,9 @@ VALUES ('$user->id', '$token', now(), '$ip', '$agent', '1')";
             throw new Exception("session is invalid");
         }
     }
-    
-    public function getuser(){
+
+    public function getuser()
+    {
         return new User($this->uid);
     }
 
@@ -70,14 +71,14 @@ VALUES ('$user->id', '$token', now(), '$ip', '$agent', '1')";
     {
         print("hello");
         // print($token);
-    //    print($this->conn);
+        //    print($this->conn);
         // print($this->$token);
-        $conn= Database::getConnection();
+        $conn = Database::getConnection();
         if ($conn && $this->uid) {
             // print("hello");
             // print("\n$token");
-            $sql ="SELECT * FROM `usersession` WHERE `token` = '$token'";
-            $result =$conn->query($sql);
+            $sql = "SELECT * FROM `usersession` WHERE `token` = '$token'";
+            $result = $conn->query($sql);
             // print_r($result);
             if ($result->num_rows == 1) {
                 // print("yes");
@@ -85,9 +86,7 @@ VALUES ('$user->id', '$token', now(), '$ip', '$agent', '1')";
                 $ipdress = $row['ip'];
                 return $ipdress;
             } else {
-
             }
         }
     }
-
 }
