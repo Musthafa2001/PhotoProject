@@ -6,7 +6,8 @@ class User
     public $id=NULL;
     public function __call($name, $arguments)
     {
-        $property=substr($name,0,3);
+        $property=substr($name,3,);
+        // print($property);
         if(substr($name,0,3)=="get"){
             
             return $this->__gets($property);
@@ -33,6 +34,7 @@ class User
         $result = $this->conn->query($sql);
         if ($result->num_rows ){
             $row=$result->fetch_assoc();
+            // print("working");
             $this->id=$row['id'];
 
 
@@ -43,12 +45,15 @@ class User
 
     }
     public function __gets($var){ 
-        if(!$this->conn){
-            $sql="SELECT `$var` FROM `users` WHERE `id` = '$this->id' LIMIT 50";
+
+        if($this->conn){
+            $sql="SELECT `$var` FROM `auth` WHERE `id` = '$this->id' LIMIT 50";
               $result = $this->conn->query($sql);
         }
           if ($result->num_rows==1 ){
             $row=$result->fetch_assoc()["$var"];
+            // print($row);
+            return $row;
            
 
         }

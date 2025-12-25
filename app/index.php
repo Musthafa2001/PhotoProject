@@ -1,7 +1,17 @@
 <?php
 include_once "libs/load.php";
 
-Session::renderpage();
+if(isset($_GET['logout'])){
+    if(session::isset('session_token')){
+
+    }
+    session::destroy();
+    die();
+}
+else{
+Session::renderpage();  
+}
+
 ?>
 
 

@@ -3,6 +3,7 @@
 class Session
 {
     public static $user=null;
+    public static $usersession=null;
 
     public static function start()
     {
@@ -44,7 +45,7 @@ class Session
             include $script;
         }
         else{
-            print("The page is not available");
+            include $_SERVER["DOCUMENT_ROOT"]."/app/__template/_error.php";
         }
     }
 
@@ -60,11 +61,14 @@ class Session
     }
 
     public static function authentication(){
-        return true;
+        return session::getusersession()->isvalid();
     }
+
     public static function getuser(){
         return session::$user;
-
+    }
+    public static function getusersession(){
+        return session::$usersession;
     }
 
 }

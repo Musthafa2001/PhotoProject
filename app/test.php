@@ -1,7 +1,6 @@
 <?php
-file_put_contents("cron.txt",time()."\n",FILE_APPEND);
-
-?>
+global $site_config;
+$site_config = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/../photo.json');
 
 
 

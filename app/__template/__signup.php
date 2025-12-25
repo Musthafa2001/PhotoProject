@@ -1,4 +1,5 @@
 <?php 
+
 $signup=false;
 $return=false;
 
@@ -7,11 +8,11 @@ $return=false;
  $pass=$_POST['password'];
  $email=$_POST['email_address'];
  $phoneno=$_POST['phonenumber'];
-
  $signup=true;
 
-$return=User::signup($user,$pass,$email,$phoneno);
+// TODO : Signup
 
+$return=User::signup($user,$pass,$email,$phoneno);
 
  }
 if ($signup){

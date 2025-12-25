@@ -10,15 +10,16 @@ class Database
     
         
         if (Database::$connection == null) {
-            $servername = "192.168.29.173";
-            $username = "user";
-            $password = "password";
-            $dbname = "db";
+            $servername = db_config("db_servername");
+            $username = db_config("db_username");
+            $password = db_config("db_password");
+            $dbname = db_config("db_name");
 
             // Create connection
             $conn = new mysqli($servername, $username, $password, $dbname);
             // Check connection
             if ($conn->connect_error) {
+                print("not conneted");
                 die("Connection failed: " . $conn->connect_error);
             } else {
                 Database::$connection = $conn;
