@@ -1,22 +1,26 @@
 
 <?php 
 
-load("__head") 
+session::loadtemplate("__head") 
 ?>
   <body>
     
 <header>
 <?php  
 
-load("__header")
+session::loadtemplate("__header")
 ?>
 </header>
 
 <main>
 
 <?php 
-load("__login")
+if(session::isAuthenticated()){
+  header("Location: index.php");
 
+}else{
+session::loadtemplate("__login");
+}
 ?>
 
 </main>
@@ -24,7 +28,7 @@ load("__login")
 <?php 
 
 
-load("__footer");
+session::loadtemplate("__footer");
 
 
 ?>
@@ -34,7 +38,7 @@ load("__footer");
     <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         const fpPromise = import('https://openfpcdn.io/fingerprintjs/v5')
-            .then(FingerprintJS => FingerprintJS.load())
+            .then(FingerprintJS => FingerprintJS.session::loadtemplate())
 
         fpPromise
             .then(fp => fp.get())

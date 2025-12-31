@@ -2,13 +2,14 @@
 
 class Database
 {
-
-
     public static $connection = null;
+    /**
+     * To get the Database connection 
+     */
     public static function getConnection()
     {
-    
-        
+
+
         if (Database::$connection == null) {
             $servername = db_config("db_servername");
             $username = db_config("db_username");
@@ -23,7 +24,7 @@ class Database
                 die("Connection failed: " . $conn->connect_error);
             } else {
                 Database::$connection = $conn;
-                
+
                 return Database::$connection;
             }
         } else {

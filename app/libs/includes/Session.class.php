@@ -60,9 +60,11 @@ class Session
         
     }
 
-    public static function authentication(){
+    public static function isAuthenticated(){
+        if(is_object(session::getusersession())){
         return session::getusersession()->isvalid();
     }
+}
 
     public static function getuser(){
         return session::$user;

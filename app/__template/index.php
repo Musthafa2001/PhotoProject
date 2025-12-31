@@ -1,37 +1,36 @@
-
-<?php  
-
-load("__header")
+<?php
+// print(__DIR__ . "");
+session::loadtemplate("__header")
 ?>
 </header>
 
 <main>
 
-<?php 
-if(Session::authentication()){
-    load("__front");
+    <?php
+    if(session::isAuthenticated()){
+  include_once "index/call.php";
+    }
+    else{
+          include_once "index/login.php";
 
-}
-else{
-    load("loginpage");
-}
+    }
+    
+    include_once "index/photogram.php";
 
+    
+    
 
-load("__photogram");
-
-?>
+    ?>
 
 </main>
 
-<?php 
+<?php
 
 
-load("__footer");
+session::loadtemplate("__footer");
 
 
 ?>
 
 
-    <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
-
-      
+<script src="assets/dist/js/bootstrap.bundle.min.js"></script>

@@ -1,27 +1,24 @@
 <?php
 include_once $_SERVER["DOCUMENT_ROOT"] . "/app/libs/load.php";
-
+$loginpage=false;
 if(isset($_POST['username']) and isset($_POST['password'])){
 
 $username = $_POST['username'];
 $password = $_POST['password'];
 $result = UserSession::authentication($username,$password);
-if ($result) {
-?>
-    <main class="form-signin w-100 m-auto">
-        <h1>Welcome     </h1>
-
-    </main>
-    
-
-<?php
-
+if($result){
+    $loginpage=True;
+}
 }
 
+if ($result) {
+   if($loginpage){
+    header("Location: index.php");
+   }
 } else {
 ?>
 
-<button type="button" class="btn btn-primary">Primary</button>
+
 
     <main class="form-signin w-100 m-auto">
         <form method="post" action="login.php">

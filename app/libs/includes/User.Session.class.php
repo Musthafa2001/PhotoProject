@@ -11,6 +11,7 @@ class UserSession
         $username = User::logIn($user, $pass);
         if ($username) {
             $user = new User($username);
+            // UserSession::$data=$user;
             $conn = Database::getConnection();
             $ip = $_SERVER['REMOTE_ADDR'];
             $agent = $_SERVER['HTTP_USER_AGENT'];
@@ -40,12 +41,14 @@ VALUES ('$user->id', '$token', now(), '$ip', '$agent', '1')";
     }
 
 
-    public function getipaddress(){
+    public function getipaddress()
+    {
         return $this->data['ipaddress'];
     }
 
-    public function removesession(){
-        if(Session::isset('session_token')){
+    public function removesession()
+    {
+        if (Session::isset('session_token')) {
             session::unset();
             session::destroy();
         }
@@ -59,22 +62,14 @@ VALUES ('$user->id', '$token', now(), '$ip', '$agent', '1')";
 
         $currentTimestamp = time();
 
-        // 30 minutes in seconds
-        $sessionLimit = 10;
+        $sessionLimit = 300;
 
 
         if (($currentTimestamp - $loginTimestamp) <= $sessionLimit) {
-            //    print($currentTimestamp- $loginTimestamp);
-
-
-            // echo "Session active";
             return true;
         } else {
-            // session expired
-            // echo "Session expired";
+
             return false;
-            // optionally destroy session
-            // session_destroy();
         }
     }
 
@@ -111,6 +106,4 @@ VALUES ('$user->id', '$token', now(), '$ip', '$agent', '1')";
 
         return new User($this->uid);
     }
-
-
 }
