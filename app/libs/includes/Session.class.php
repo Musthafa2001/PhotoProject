@@ -64,6 +64,9 @@ class Session
         if(is_object(session::getusersession())){
         return session::getusersession()->isvalid();
     }
+    else{
+        return false;
+    }
 }
 
     public static function getuser(){
