@@ -6,21 +6,20 @@ include_once "includes/Session.class.php";
 include_once "includes/User.Session.class.php";
 include_once "includes/WebAPI.class.php";
 global $site_config;
-$site_config = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/../photo.json');
+$site_config = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/../photo.json');
 $webapi = new WebAPI();
 $webapi->initiatesession();
 
-function db_config($key,$default=null)
+function db_config($key, $default = null)
 {
   global $site_config;
 
   $data = json_decode($site_config, true);
-//   print_r($data);
+  //   print_r($data);
   if (isset($data[$key])) {
     return $data[$key];
-  }
-  else{
-        return "hello";
+  } else {
+    return "hello";
   }
 }
 

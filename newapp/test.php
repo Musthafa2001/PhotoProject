@@ -1,5 +1,8 @@
 <?php
-include_once "libs/includes/Database.class.php";
+include_once $_SERVER["DOCUMENT_ROOT"]."/newapp/libs/includes/Database.class.php";
+
+
+
 
 
 ?>

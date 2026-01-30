@@ -62,7 +62,7 @@ VALUES ('$user->id', '$token', now(), '$ip', '$agent', '1')";
 
         $currentTimestamp = time();
 
-        $sessionLimit = 300;
+        $sessionLimit = 30;
 
 
         if (($currentTimestamp - $loginTimestamp) <= $sessionLimit) {

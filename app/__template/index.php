@@ -26,9 +26,7 @@ session::loadtemplate("__header")
 
 <?php
 
-
 session::loadtemplate("__footer");
-
 
 ?>
 

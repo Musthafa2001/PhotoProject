@@ -68,6 +68,16 @@ class Session
         return false;
     }
 }
+    public static function ensureLogin(){
+        if(!session::isAuthenticated()){
+            session::set('_redirect',session::currentscript());
+          
+            header("location: /app/login.php");
+            //   print(session::get('_redirect'));
+            die;
+        }
+    }
+
 
     public static function getuser(){
         return session::$user;
