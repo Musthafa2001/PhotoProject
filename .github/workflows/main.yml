@@ -6,4 +6,4 @@ jobs:
     steps:
       - name: show what is triggered 
         run:
-          echo "Event Name: $GITHUB_EVENT_NAME"
+          echo "Event Name"
