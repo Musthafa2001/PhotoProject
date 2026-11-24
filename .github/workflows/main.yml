@@ -2,7 +2,7 @@ name: when pushing the baseline
 on: push
 jobs:
   mybuild:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: show what is triggered 
         run:
