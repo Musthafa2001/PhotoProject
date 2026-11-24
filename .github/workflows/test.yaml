@@ -2,7 +2,7 @@ name: PHP devlelopment
 on: workflow_dispatch
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Print a greeting
         run: echo "Hello world"
