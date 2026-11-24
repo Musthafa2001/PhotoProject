@@ -1,0 +1,9 @@
+name: PHP devlelopment
+on: check_run
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print a greeting
+        run: echo "Hello world"
+
