@@ -1,0 +1,9 @@
+name: when pushing the baseline
+on: push
+jobs:
+  mybuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: show what is triggered 
+        run:
+          echo "Event Name: $GITHUB_EVENT_NAME"
